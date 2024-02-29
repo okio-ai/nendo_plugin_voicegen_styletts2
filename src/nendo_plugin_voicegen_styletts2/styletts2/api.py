@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from typing import Tuple, List
 
 import librosa
@@ -93,7 +94,7 @@ def load_models(
     _ = [model[key].eval() for key in model]
     _ = [model[key].to(device) for key in model]
 
-    tts2_path = "models/epochs_2nd_00020.pth"
+    tts2_path = os.path.join(Path.home(), ".cache", "nendo", "models", "epochs_2nd_00020.pth")
     os.makedirs("models", exist_ok=True)
     if not os.path.isfile(tts2_path):
         download_model(tts2_download_path, tts2_path)
